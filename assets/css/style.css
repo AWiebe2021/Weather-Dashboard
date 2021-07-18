@@ -1,3 +1,9 @@
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 28px;
+  line-height: 1;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -13,6 +19,24 @@ textarea{
   padding: 10px;
 }
 
+ul {
+  /* display: block; */
+  list-style-type: none;
+
+}
+
+li {
+  /* display: block; */
+  list-style-type: none;
+
+}
+
+li[id^="Day"]{
+  /* display: block; */
+  list-style-type: none;
+  margin: 10px 20px 10px 20px;
+}
+
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -24,48 +48,22 @@ textarea{
 .description{
   white-space: pre-wrap;
 }
-
-.time-block{
-  text-align: center;
+.city-btn {
   border-radius: 15px;
-}
-
-.row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;;
-}
-
-.hour {
-  background-color: #ffffff;
-  color: #000000;
-  border-top: 1px dashed #000000;
-}
-
-.past {
-  background-color: #d3d3d3;
+  background-color: gray;
   color: white;
+  margin: 10px;
 }
 
-.present {
-  background-color: #ff6961;
-  color: white;
-}
 
-.future {
-  background-color: #77dd77;
-  color: white;
-}
 
-.saveBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+.btn {
+  border-radius: 15px;
   background-color: #06AED5;
   color: white;
 }
 
-.saveBtn i:hover {
+.btn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
