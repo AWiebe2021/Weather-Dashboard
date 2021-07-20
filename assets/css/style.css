@@ -4,6 +4,12 @@ h1 {
   line-height: 1;
 }
 
+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -28,13 +34,29 @@ ul {
 li {
   /* display: block; */
   list-style-type: none;
+  padding: 10px;
+}
 
+.currentCityWeather{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;  
+}
+
+.currentWeather{
+  display: flex;
+}
+
+#myCanvas{
+  display: flex;
 }
 
 li[id^="Day"]{
   /* display: block; */
+  font-size: 14px;
   list-style-type: none;
   margin: 10px 20px 10px 20px;
+  padding: 0;
 }
 
 .jumbotron {

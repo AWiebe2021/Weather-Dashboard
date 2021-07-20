@@ -1,32 +1,31 @@
 var day = (moment().format("DDDDYYYY"));
 var dayInc = 0;
 var hour = moment().hours();
+var searchedCities = [];
+var Sector = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW","N"];
 
-var myFunction = function(){
-    // Create a variable that will use `document.querySelector()` to target the `id` of the input 
-    // Use `.value` to capture the value of the input and store it in the variable
+for (let i = 1; i < 6; i++) {
+document.querySelector("#Day"+i).textContent = moment().add(i, 'days').format('L');
+};
+
+loadCities();
+
+var searchCityAction = function(){
   var searchStr = document.querySelector("#searchTerm").value;
-    //https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
-    //https://api.geocod.io/v1.6/3212807212bfb01b6636f32077439307032f440
-    //curl "https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=3212807212bfb01b6636f32077439307032f440"
-    //https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=c6372f1324c78c2e38ccaa1ebef5b15c
-//http://openweathermap.org/img/wn/01d@2x.png 01-04,09-11,13,50
-    //let latlon = position.coords.latitude + "," + position.coords.longitude
-  // Kelvin to Farenheit is (K − 273.15) × 9/5 + 32;
-    // Make a `fetch` request concatenating that variable to the query URL
-    // Remember to add your API key at the end
-    // var apiUrl = "https://api.giphy.com/v1/gifs/search?city=" + searchStr + "&api_key=HvaacROi9w5oQCDYHSIk42eiDSIXH3FN";
+  if (searchStr){
+    if (!(searchedCities.includes(searchStr))){
+      searchedCities[searchedCities.length] = searchStr.charAt(0).toUpperCase() + searchStr.slice(1);
+      localStorage.setItem("searchedCities" , JSON.stringify(searchedCities));
+    };
+      
+// //save data as key,value: dayyear, array of tasks per hour
     var apiUrl = "https://api.geocod.io/v1.6/geocode?city=" + searchStr + "&api_key=3212807212bfb01b6636f32077439307032f440"
     fetch(apiUrl)
       .then(geoResponse => geoResponse.json())
       .then(geoResponse => {
         console.log(geoResponse.results[0])
         var divEl = document.querySelector("#response-container");
-        //
-        // Empty out the <div> before we append a GIF to it
-        // while (divEl.hasChildNodes()) {  
-        //   divEl.removeChild(divEl.firstChild);
-        // };
+
         let currentCity = geoResponse.results[0].formatted_address;
         var para = document.querySelector("#display-city"); 
         para.textContent = currentCity; 
@@ -34,33 +33,47 @@ var myFunction = function(){
         fetch(api2Url)
         .then(response => response.json())
         .then(response => {
-          // console.log(response.results[0])
-        //   <ul id=current-weather>
-        //   <li id=current-temp>Temp</li>
-        //   <li id=current-wind>Wind</li>
-        //   <li id=current-hum>Humidity</li>
-        //   <li id=current-UVI>UV Index</li>
-        // </ul>
-          var ulEl = document.querySelector("#current-weather");
-          var ilEl1 = document.querySelector("#current-temp");
-          var ilEl2 = document.querySelector("#current-wind");
-          var ilEl3 = document.querySelector("#current-hum");
-          var ilEl4 = document.querySelector("#current-UVI");
+          document.querySelector("#current-temp").textContent = "Temp: " + (((response.current.temp-273.15) * (9/5)) + 32).toFixed(2);
+          document.querySelector("#current-wind").textContent = "Wind: " + Sector[(Math.round(response.current.wind_deg / 22.5) + 1)] + " @ " + response.current.wind_speed + 'mph';
+          document.querySelector("#current-hum").textContent = "Humidity: " + response.current.humidity;
+          document.querySelector("#current-UVI").textContent = "UV Index: " + response.current.uvi;
 
-          var tempFaren = (((response.current.temp-273.15) * (9/5)) + 32);
+          for (let i = 1; i < 6; i++) {
+            document.querySelector("#Day"+i+"-temp").textContent = "Temp: " + (((response.daily[i].temp.max-273.15) * (9/5)) + 32).toFixed(2);
+            document.querySelector("#Day"+i+"-wind").textContent = "Wind: " + Sector[(Math.round(response.daily[i].wind_deg / 22.5) + 1)] + "@" + response.daily[i].wind_speed.toFixed(0);
+            document.querySelector("#Day"+i+"-hum").textContent = "Humidity: " + response.daily[i].humidity;
+            document.querySelector("#Day"+i+"-icon").src="http://openweathermap.org/img/wn/" + response.daily[i].weather[0].icon + "@2x.png";
+          };
+        }); 
+      });
+  };    
+};
 
-          ilEl1.textContent = "Temp: " + tempFaren;
-          ilEl2.textContent = "Wind: " + response.current.wind_speed + 'mph @ ' + response.current.wind_deg;
-          ilEl3.textContent = "Humidity: " + response.current.humidity;
-          ilEl4.textContent = "UV Index: " + response.current.uvi;
+function myFunction(){
+  document.querySelector("#searchTerm").value = this.innerHTML;
+  searchCityAction();  
+};
 
-          // let currentWeather = response.current.weather[0].description;
-          // var para = document.createElement("P"); 
-          // para.innerText = currentWeather; 
-          // divEl.appendChild(para);
+function loadCities(){
+  var searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
+  if (searchedCities.length > 0){
+   for (let i = 0; i < searchedCities.length; i++) {
 
-        //
-        }) 
-      })
-  };
+     var cityText = searchedCities[i];
+
+     var listItemEl = document.createElement("li");
+     // listItemEl.appendChild(document.createTextNode(""));
+     var button = document.createElement("button");
+     button.className = "btn past-city";
+     button.innerHTML = cityText;
+     button.addEventListener('click', myFunction, false);
+     listItemEl.appendChild(button);
+     document.getElementById("city-list").appendChild(listItemEl);
+   };
+ };
+};    
+
+
+
+
 

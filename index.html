@@ -36,9 +36,12 @@
             </h1>
             <!-- <label for="city">city:</label><br> -->
             <input type="text" id="searchTerm" name="city"><br>
-            <button type="button" class="btn" id="submit-search">Search</button>
+            <button type="button" class="btn" id="submit-search" onclick="searchCityAction()">Search</button>
             <!-- <button id="submit-search" class="btn btn-block btn-add"></button><span class="oi oi-plus mr-2"></span>Search</button> -->
-            <button type="city-button" class="city-btn" id="submit-search" onclick="myFunction()">Search</button>         
+            <ul id="city-list">
+
+            </ul>
+            <!-- <button type="city-button" class="city-btn" id="submit-search" onclick="myFunction()">Search</button>          -->
           <!-- <span class="oi oi-task display-1 text-center mb-2 d-none d-lg-block mt-auto"></span> -->
  
         </header>
@@ -47,6 +50,8 @@
             <h1 class="text-left" id="display-city">
               <!-- <span class="d-lg-none"> </span> -->
             </h1>
+            <div class=m-2 row justify-content-around currentCityWeather >
+              <img id=current-icon src=" ">
 
               <ul id=current-weather>
                 <li id=current-temp>Temp</li>
@@ -54,7 +59,8 @@
                 <li id=current-hum>Humidity</li>
                 <li id=current-UVI>UV Index</li>
               </ul>
-
+              <!-- <canvas id="myCanvas" width="200" height="100"></canvas> -->
+            </div>
           </div>  
           <div class="m-5 row justify-content-around">
               <!--  -->
@@ -64,6 +70,7 @@
                     Day1
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
+                    <img id=Day1-icon src=" ">
                     <li id=Day1-temp>Temp</li>
                     <li id=Day1-wind>Wind</li>
                     <li id=Day1-hum>Humidity</li>
@@ -77,6 +84,7 @@
                     Day2
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
+                    <img id=Day2-icon src=" ">
                     <li id=Day2-temp>Temp</li>
                     <li id=Day2-wind>Wind</li>
                     <li id=Day2-hum>Humidity</li>
@@ -90,6 +98,7 @@
                     Day3
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
+                    <img id=Day3-icon src=" ">
                     <li id=Day3-temp>Temp</li>
                     <li id=Day3-wind>Wind</li>
                     <li id=Day3-hum>Humidity</li>
@@ -103,6 +112,7 @@
                     Day4
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
+                    <img id=Day4-icon src=" ">
                     <li id=Day4-temp>Temp</li>
                     <li id=Day4-wind>Wind</li>
                     <li id=Day4-hum>Humidity</li>
@@ -116,6 +126,7 @@
                     Day5
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
+                    <img id=Day5-icon src=" ">
                     <li id=Day5-temp>Temp</li>
                     <li id=Day5-wind>Wind</li>
                     <li id=Day5-hum>Humidity</li>
