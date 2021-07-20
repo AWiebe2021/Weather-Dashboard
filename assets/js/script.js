@@ -1,7 +1,15 @@
 var day = (moment().format("DDDDYYYY"));
 var dayInc = 0;
 var hour = moment().hours();
-var searchedCities = [];
+// var searchedCities = [];
+
+var cityArray = JSON.parse(localStorage.getItem("searchedCities"));
+if (cityArray){
+    searchedCities = cityArray;
+  }else{
+    var searchedCities = [];
+}; 
+
 var Sector = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW","N"];
 
 for (let i = 1; i < 6; i++) {
@@ -13,8 +21,13 @@ loadCities();
 var searchCityAction = function(){
   var searchStr = document.querySelector("#searchTerm").value;
   if (searchStr){
+    const arr = searchStr.split(" ");
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    searchStr = arr.join(" ");
     if (!(searchedCities.includes(searchStr))){
-      searchedCities[searchedCities.length] = searchStr.charAt(0).toUpperCase() + searchStr.slice(1);
+      searchedCities[searchedCities.length] = searchStr;
       localStorage.setItem("searchedCities" , JSON.stringify(searchedCities));
     };
       
@@ -46,27 +59,29 @@ var searchCityAction = function(){
           };
         }); 
       });
+    loadCities();
   };    
 };
 
-function myFunction(){
+function searchPastCity(){
   document.querySelector("#searchTerm").value = this.innerHTML;
   searchCityAction();  
 };
 
 function loadCities(){
   var searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
-  if (searchedCities.length > 0){
+  var answersEl = document.getElementById("city-list");
+  while (answersEl.hasChildNodes()) {  
+    answersEl.removeChild(answersEl.firstChild);
+  };
+  if (searchedCities){
    for (let i = 0; i < searchedCities.length; i++) {
-
      var cityText = searchedCities[i];
-
      var listItemEl = document.createElement("li");
-     // listItemEl.appendChild(document.createTextNode(""));
      var button = document.createElement("button");
-     button.className = "btn past-city";
+     button.className = "btn";
      button.innerHTML = cityText;
-     button.addEventListener('click', myFunction, false);
+     button.addEventListener('click', searchPastCity, false);
      listItemEl.appendChild(button);
      document.getElementById("city-list").appendChild(listItemEl);
    };
