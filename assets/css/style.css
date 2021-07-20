@@ -2,12 +2,15 @@ h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 28px;
   line-height: 1;
+  padding:15PX
 }
 
 h4 {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1;
+
+
 }
 
 body {
@@ -40,7 +43,8 @@ li {
 .currentCityWeather{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;  
+  justify-content: flex-start;
+  min-width: 150px;  
 }
 
 .currentWeather{
@@ -60,22 +64,26 @@ li[id^="Day"]{
 }
 
 .jumbotron {
+  background-image: linear-gradient(to right, lightblue, blue);
   text-align: center;
   background-color: transparent;
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  padding: 0px;
+
 }
 
 .description{
   white-space: pre-wrap;
 }
 
-.city-btn {
-  border-radius: 15px;
-  background-color: gray;
-  color: white;
-  margin: 10px;
+
+
+#response-container{
+  background-color: lightgray;
+
+
 }
 
 #city-list{
@@ -89,6 +97,17 @@ li[id^="Day"]{
   padding-left: 0px;
 }
 
+#current-icon{
+  height:150px;
+  min-width:150px; 
+  margin: 0px 20px 20px 20px;
+  background-color: lightgray;
+}
+
+#current-wind-bearing{
+  height:150px; 
+  min-width:150px;
+}
 
 .btn {
   border-radius: 15px;
@@ -99,4 +118,17 @@ li[id^="Day"]{
 .btn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.btn-error {
+  border-radius: 15px;
+  background-color: red;
+  color: white;
+}
+
+.city-btn {
+  border-radius: 15px;
+  background-color: gray;
+  color: black;
+  margin: 10px;
 }

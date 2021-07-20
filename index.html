@@ -32,42 +32,41 @@
         <header class="col-12 col-lg-3 sticky-top d-flex flex-column p-4 p-lg-3 border border-secondary">
             <h1 class="text-left">
               <span class="d-inline d-lg-none"></span>
-              Search for a City:
+              Search for a US City:
             </h1>
-            <!-- <label for="city">city:</label><br> -->
-            <input type="text" id="searchTerm" name="city"><br>
+            <input type="text" id="searchTerm" name="city" onclick="resetSubmitButton()"> <br>
             <button type="button" class="btn" id="submit-search" onclick="searchCityAction()">Search</button>
-            <!-- <button id="submit-search" class="btn btn-block btn-add"></button><span class="oi oi-plus mr-2"></span>Search</button> -->
             <ul id="city-list">
 
             </ul>
-            <!-- <button type="city-button" class="city-btn" id="submit-search" onclick="myFunction()">Search</button>          -->
-          <!-- <span class="oi oi-task display-1 text-center mb-2 d-none d-lg-block mt-auto"></span> -->
- 
-        </header>
-         <main class="col-12 col-lg-9 d-flex flex-column border border-secondary">
-          <div class="m-5 border border-secondary align-items-left" id="response-container">
-            <h1 class="text-left" id="display-city">
-              <!-- <span class="d-lg-none"> </span> -->
-            </h1>
-            <div class=m-2 row justify-content-around currentCityWeather >
-              <img id=current-icon src=" ">
+         </header>
 
-              <ul id=current-weather>
+         <main class="col-12 col-lg-9 d-flex flex-column border border-secondary">
+          <H1 class="text-left">CURRENT CITY DATA</H1>
+          <div class="m-3 border border-secondary align-items-left" id="response-container">
+            <h1 class="text-left" id="display-city">
+            </h1>
+            <div class="m-2 row currentCityWeather" >
+              <img class="col-2 widthSet" id=current-icon src=" ">
+
+              <ul class="col-6" id=current-weather>
                 <li id=current-temp>Temp</li>
                 <li id=current-wind>Wind</li>
                 <li id=current-hum>Humidity</li>
                 <li id=current-UVI>UV Index</li>
               </ul>
-              <!-- <canvas id="myCanvas" width="200" height="100"></canvas> -->
+
+              <img class="col-2 widthSet" id=current-wind-bearing src=" ">
+
             </div>
-          </div>  
-          <div class="m-5 row justify-content-around">
+          </div>
+          <H1 class="text-left">5 DAY FORECAST</H1>  
+          <div class="m-3 row justify-content-around border border-secondary">
               <!--  -->
-              <div class="col-12 col-md-6 col-xl-2 mb-3">
+              <div class="col-12 col-md-6 col-xl-2 mb-3 mt-3">
                 <div class="card">
                   <h4 class="card-header bg-dark text-light d-flex align-items-center" id="Day1">
-                    Day1
+                    
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
                     <img id=Day1-icon src=" ">
@@ -78,10 +77,10 @@
                 </div>
               </div>
               <!--  -->
-              <div class="col-12 col-md-6 col-xl-2 mb-3">
+              <div class="col-12 col-md-6 col-xl-2 mb-3 mt-3">
                 <div class="card">
                   <h4 class="card-header bg-dark text-light d-flex align-items-center" id="Day2">
-                    Day2
+                    
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
                     <img id=Day2-icon src=" ">
@@ -92,10 +91,10 @@
                 </div>
               </div>
               <!--  -->
-              <div class="col-12 col-md-6 col-xl-2 mb-3">
+              <div class="col-12 col-md-6 col-xl-2 mb-3 mt-3">
                 <div class="card">
                   <h4 class="card-header bg-dark text-light d-flex align-items-center" id="Day3">
-                    Day3
+                    
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
                     <img id=Day3-icon src=" ">
@@ -106,10 +105,10 @@
                 </div>
               </div>
               <!--  -->
-              <div class="col-12 col-md-6 col-xl-2 mb-3">
+              <div class="col-12 col-md-6 col-xl-2 mb-3 mt-3">
                 <div class="card">
                   <h4 class="card-header bg-dark text-light d-flex align-items-center" id="Day4">
-                    Day4
+                    
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
                     <img id=Day4-icon src=" ">
@@ -120,10 +119,10 @@
                 </div>
               </div>
               <!--  -->
-              <div class="col-12 col-md-6 col-xl-2 mb-3">
+              <div class="col-12 col-md-6 col-xl-2 mb-3 mt-3">
                 <div class="card">
                   <h4 class="card-header bg-dark text-light d-flex align-items-center" id="Day5">
-                    Day5
+                    
                   </h4>
                   <ul class="list-group list-group-flush bg-dark text-light">
                     <img id=Day5-icon src=" ">
